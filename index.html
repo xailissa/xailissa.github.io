@@ -30,8 +30,6 @@
             z-index: 1000;
         }
 
-        
-
         .logo {
             font-size: 18px;
             font-weight: bold;
@@ -132,6 +130,7 @@
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .icon:hover {
@@ -195,7 +194,7 @@
 
         .projects-grid .project-card a {
             text-decoration: none;
-            color: #000; /* Black color */
+            color: #000;
         }
 
         .section-nav {
@@ -232,6 +231,82 @@
 
         .section-content.active {
             display: block;
+        }
+
+        /* Education section styling */
+        .education-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #f4c2c2;
+            border-radius: 2px;
+        }
+
+        .degree-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .university-name {
+            font-size: 16px;
+            color: #f4c2c2;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .education-years {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .education-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .coursework-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .coursework-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .course-tag {
+            background-color: #f8f8f8;
+            color: #555;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
         }
 
         footer {
@@ -301,7 +376,7 @@
             font-size: 14px;
         }
 
-        /* Contact form styling - UPDATED */
+        /* Contact form styling */
         .contact-form {
             width: 100%;
             max-width: 600px;
@@ -435,11 +510,19 @@
                 align-items: center;
                 gap: 10px;
             }
+
+            .education-card {
+                padding: 20px;
+            }
+
+            .coursework-list {
+                gap: 6px;
+            }
         }
 
         @media (min-width: 769px) {
             nav ul {
-                display: flex !important; /* Always show on larger screens */
+                display: flex !important;
                 position: static;
                 transform: none;
                 background-color: transparent;
@@ -464,6 +547,14 @@
             
             .skill-item {
                 width: 80px;
+            }
+
+            .degree-title {
+                font-size: 18px;
+            }
+
+            .university-name {
+                font-size: 15px;
             }
         }
     </style>
@@ -503,12 +594,12 @@
                 <a href="resume.html" class="icon" title="Resume">
                     <img src="images/resume.png" alt="Resume icon">
                 </a>
-                <div class="icon" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/jahlissa-fraser/" class="icon" title="LinkedIn" target="_blank">
                     <img src="images/linkedin (2).png" alt="LinkedIn icon">
-                </div>
-                <div class="icon" title="Email">
+                </a>
+                <a href="mailto:jahlissafraser3@gmail.com" class="icon" title="Email">
                     <img src="images/email (3).png" alt="Email icon">
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -570,7 +661,7 @@
         <div id="design-content" class="section-content">
             <div class="projects-grid">
                 <div class="project-card">
-                    <a href="https://www.figma.com/file/example-jobloop" target="_blank" class="project-link">
+                    <a href="https://www.figma.com/design/jobloop-example" target="_blank" class="project-link">
                         <div class="project-img">
                             <img src="/api/placeholder/280/180" alt="JobLoop Project">
                         </div>
@@ -594,7 +685,7 @@
                 </div>
 
                 <div class="project-card">
-                    <a href="https://www.figma.com/file/example-food-delivery" target="_blank" class="project-link">
+                    <a href="https://www.figma.com/design/food-delivery-app-example" target="_blank" class="project-link">
                         <div class="project-img">
                             <img src="/api/placeholder/280/180" alt="Food Delivery App">
                         </div>
@@ -606,7 +697,7 @@
                 </div>
 
                 <div class="project-card">
-                    <a href="https://www.figma.com/file/example-autoserve" target="_blank" class="project-link">
+                    <a href="https://www.figma.com/design/autoserve-figma-example" target="_blank" class="project-link">
                         <div class="project-img">
                             <img src="images/autoservefigma.png" alt="AutoServe Inc. Project">
                         </div>
@@ -624,13 +715,28 @@
         <h2>Education</h2>
         <div class="underline"></div>
         <div class="main-content">
-            <!-- Placeholder for education content -->
-            <div class="intro">
-                <p>Diploma in Software Engineering</p>
-                <p>University of Trinidad and Tobago</p>
-                <p>2023 - 2025</p>
-                <br>
-                <p>Relevant coursework includes: Software Engineering, Web Development, Database Systems, Computer Networks, and User Interface Design.</p>
+            <div class="education-container">
+                <div class="education-card">
+                    <div class="degree-title">Diploma in Software Engineering</div>
+                    <div class="university-name">University of Trinidad and Tobago</div>
+                    <div class="education-years">2023 - 2025</div>
+                    
+                    <div class="education-description">
+                        Comprehensive program focusing on modern software development practices, web technologies, and system design. Gained hands-on experience in full-stack development, database management, and collaborative software engineering methodologies.
+                    </div>
+                    
+                    <div class="coursework-title">Key Coursework:</div>
+                    <div class="coursework-list">
+                        <span class="course-tag">Software Engineering</span>
+                        <span class="course-tag">Web Development</span>
+                        <span class="course-tag">Database Systems</span>
+                        <span class="course-tag">Computer Networks</span>
+                        <span class="course-tag">User Interface Design</span>
+                        <span class="course-tag">Data Structures</span>
+                        <span class="course-tag">Project Management</span>
+                        <span class="course-tag">System Analysis</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -837,8 +943,6 @@
                 }, 1000);
             }
         });
-
-        
     </script>
 </body>
 </html>
