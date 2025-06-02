@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahlissa Fraser - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #f4c2c2;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .resume {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .resume-header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .resume-header p {
+            font-style: italic;
+            color: #666;
+        }
+
+        .resume-section {
+            margin-bottom: 30px;
+        }
+
+        .resume-section h2 {
+            font-size: 20px;
+            border-bottom: 2px solid #f4c2c2;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .resume-content {
+            margin-left: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            flex-basis: 45%;
+        }
+
+        .edu-item, .exp-item {
+            margin-bottom: 20px;
+        }
+
+        .edu-item h3, .exp-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .edu-item p, .exp-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .date {
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: #f4c2c2;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .experience-duties {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        .experience-duties li {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #f4c2c2;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #e8b0b0;
+            transform: translateY(-2px);
+        }
+
+        .back-to-portfolio {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #f4c2c2;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #f4c2c2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        @media print {
+            header, .download-btn, .back-to-portfolio, footer {
+                display: none;
+            }
+
+            .container {
+                margin: 0;
+                padding: 0;
+            }
+
+            .resume {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+            }
+
+            .contact-item {
+                flex-basis: 100%;
+            }
+
+            .resume {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Jahlissa Fraser</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Back to Portfolio!</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="resume">
+            <div class="resume-header">
+                <h1>Jahlissa Fraser</h1>
+                <p>Software Engineering Student</p>
+            </div>
+
+            <div class="resume-section">
+                <h2>Contact Information</h2>
+                <div class="resume-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong> Avaible Upon Request
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong> jahlissafraser3@gmail.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Address:</strong> Avaible Upon Request
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Profile</h2>
+                <div class="resume-content">
+                    <p>Motivated and hardworking individual with a passion for continuous learning and professional growth. Successfully completed CSEC in June 2023 with seven passes. Recognized for strong time management, effective problem-solving, and excellent communication skills. Quick learner, adaptable to diverse environments, and eager to contribute to team success.</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Education</h2>
+                <div class="resume-content">
+                    <div class="edu-item">
+                        <h3>University of Trinidad and Tobago, Wrightson Rd.</h3>
+                        <p>Diploma in Software Engineering | In Progress</p>
+                    </div>
+                    <div class="edu-item">
+                        <h3>St. Francois Girls' College, Belmont</h3>
+                        <p>Certificate of Graduation | June 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Key Skills</h2>
+                <div class="resume-content">
+                    <div class="skills-list">
+                        <div class="skill-tag">Time management</div>
+                        <div class="skill-tag">Attention to detail</div>
+                        <div class="skill-tag">Microsoft Office</div>
+                        <div class="skill-tag">Computer Literacy</div>
+                        <div class="skill-tag">Project Management</div>
+                        <div class="skill-tag">C++</div>
+                        <div class="skill-tag">Java</div>
+                        <div class="skill-tag">HTML</div>
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">Problem-solving</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Experience</h2>
+                <div class="resume-content">
+                    <div class="exp-item">
+                        <h3>Cashier • Pierre Road Supermarket</h3>
+                        <p class="date">April 2024 – August 2024</p>
+                        <ul class="experience-duties">
+                            <li>Handled customer transactions efficiently</li>
+                            <li>Managed inventory and maintained a clean and organized workspace</li>
+                            <li>Resolved customer inquiries with professionalism</li>
+                        </ul>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Primary School Math Tutor • Remotely</h3>
+                        <p class="date">October 2021 – March 2022</p>
+                    </div>
+                    <div class="exp-item">
+                        <h3>Babysitter • Privately</h3>
+                        <p class="date">July 2020 – September 2020</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Objective</h2>
+                <div class="resume-content">
+                    <p>Seeking a part-time or full-time position where I can utilize my skills while contributing to your company's success. Eager to gain hands-on experience, develop professionally, and learn new skills in a dynamic work environment.</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>References</h2>
+                <div class="resume-content">
+                    <p>Available upon request.</p>
+                </div>
+            </div>
+
+            <a href="#" class="download-btn" onclick="window.print(); return false;">Download PDF</a>
+        </div>
+
+        <div class="back-to-portfolio">
+            <a href="index.html" class="back-link">Back to Portfolio</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2025 Jahlissa Fraser</p>
+    </footer>
+</body>
+</html>
