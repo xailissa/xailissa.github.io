@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NailsxLissa Appointment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    /* Same styling as before */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #fff;
+    }
+    h1 {
+      font-family: 'Italiana', serif;
+      font-size: 32px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    .category {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f5f5f5;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .category button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .dropdown {
+      display: none;
+      margin-top: 10px;
+    }
+    .dropdown select {
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .appointment-summary {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f0f0f0;
+    }
+    .time-slots {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .time-slot {
+      padding: 10px;
+      margin: 5px;
+      background: black;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .deposit-btn {
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: gray;
+    }
+    .date-error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="home1.html" style="text-decoration: none; color: black;">
+      <h1>NailsxLissa</h1>
+    </a>
+    <h2>Select Appointment Category</h2>
+
+    <!-- Categories -->
+    <div class="category">
+      <span>Simple Gelx Manicure</span>
+      <button onclick="toggleDropdown('simple')">Select</button>
+    </div>
+    <div id="simple" class="dropdown">
+      <select onchange="updateSummary('Simple Gelx Manicure')">
+        <option value="Short - $200">Short - $200</option>
+        <option value="Medium - $220">Medium - $220</option>
+        <option value="Long - $250">Long - $250</option>
+        <option value="X Long - $280">X Long - $280</option>
+      </select>
+    </div>
+
+    <div class="category">
+      <span>Freestyle Gelx Manicure</span>
+      <button onclick="toggleDropdown('freestyle')">Select</button>
+    </div>
+    <div id="freestyle" class="dropdown">
+      <select onchange="updateSummary('Freestyle Gelx Manicure')">
+        <option value="Short - $200">Short - $200</option>
+        <option value="Medium - $220">Medium - $220</option>
+        <option value="Long - $250">Long - $250</option>
+        <option value="X Long - $280">X Long - $280</option>
+      </select>
+    </div>
+
+    <div class="category">
+      <span>Gel Manicure</span>
+      <button onclick="toggleDropdown('gel')">Select</button>
+    </div>
+    <div id="gel" class="dropdown">
+      <select onchange="updateSummary('Gel Manicure')">
+        <option value="Simple/Single Color - $85">Simple/Single Color - $85</option>
+        <option value="Simple - $135">Simple - $135</option>
+        <option value="Freestyle - $200">Freestyle - $200</option>
+      </select>
+    </div>
+
+    <div class="category">
+      <span>Removal/Repair</span>
+      <button onclick="toggleDropdown('removal')">Select</button>
+    </div>
+    <div id="removal" class="dropdown">
+      <select onchange="updateSummary('Removal/Repair')">
+        <option value="Removal - $50">Removal - $50</option>
+        <option value="Repair - $30">Repair - $30</option>
+      </select>
+    </div>
+
+    <!-- Date Picker -->
+    <h3>Select a date</h3>
+    <input id="date-picker" type="text" placeholder="Select a date" onchange="updateSummary()">
+    <div id="date-error" class="date-error">Please select a future date</div>
+
+    <!-- Time slots -->
+    <div class="time-slots">
+      <div class="time-slot" onclick="selectTime(this, '9:00 AM')">9:00 AM</div>
+      <div class="time-slot" onclick="selectTime(this, '12:00 PM')">12:00 PM</div>
+      <div class="time-slot" onclick="selectTime(this, '3:00 PM')">3:00 PM</div>
+    </div>
+
+    <!-- Summary -->
+    <div class="appointment-summary">
+      <h3>Appointment Summary</h3>
+      <p id="selected-category">No category selected</p>
+      <p id="selected-length">No length selected</p>
+      <p id="selected-date">Select a date</p>
+      <p id="selected-time">Select a time</p>
+    </div>
+
+    <!-- Form (placeholder, no JSP) -->
+    <form action="deposit.html" method="post" id="appointment-form">
+      <input type="hidden" name="appointment_category" id="hidden-category">
+      <input type="hidden" name="type" id="hidden-length">
+      <input type="hidden" name="appointment_date" id="hidden-date">
+      <input type="hidden" name="time" id="hidden-time">
+      <input type="hidden" name="price" id="hidden-price">
+
+      <button class="deposit-btn" type="submit" id="submit-btn">Pay Deposit</button>
+    </form>
+
+    <footer>
+      &copy;2024 Jahlissa Fraser
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let currentCategory = '';
+
+    flatpickr("#date-picker", {
+      enableTime: false,
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      onChange: function(selectedDates, dateStr, instance) {
+        if (selectedDates[0] < today) {
+          document.getElementById("date-error").style.display = "block";
+          document.getElementById("submit-btn").disabled = true;
+        } else {
+          document.getElementById("date-error").style.display = "none";
+          document.getElementById("submit-btn").disabled = false;
+        }
+        updateSummary();
+      }
+    });
+
+    function selectTime(element, time) {
+      document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.style.backgroundColor = 'black';
+      });
+      element.style.backgroundColor = '#444';
+      document.getElementById("hidden-time").value = time;
+      document.getElementById("selected-time").innerText = time;
+    }
+
+    function toggleDropdown(id) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.style.display = dropdown.id === id ? 'block' : 'none';
+      });
+    }
+
+    function updateSummary(category = null) {
+      if (category) currentCategory = category;
+
+      const visibleSelect = [...document.querySelectorAll(".dropdown select")]
+        .find(select => select.parentElement.style.display === "block");
+      const selectedLength = visibleSelect ? visibleSelect.value : "No length selected";
+      const selectedDate = document.getElementById("date-picker").value || "Select a date";
+      const selectedTime = document.getElementById("selected-time").innerText || "Select a time";
+
+      document.getElementById("selected-category").innerText = currentCategory || "No category selected";
+      document.getElementById("selected-length").innerText = selectedLength;
+      document.getElementById("selected-date").innerText = selectedDate;
+
+      document.getElementById("hidden-category").value = currentCategory;
+      document.getElementById("hidden-length").value = selectedLength.split(" - ")[0];
+      document.getElementById("hidden-price").value = selectedLength.split(" - ")[1]?.replace("$", "") || "";
+      document.getElementById("hidden-date").value = selectedDate;
+    }
+
+    document.getElementById("appointment-form").addEventListener("submit", function(event) {
+      const selectedDate = document.getElementById("date-picker").value;
+      const selectedCategory = document.getElementById("hidden-category").value;
+      if (!selectedDate || new Date(selectedDate) < today) {
+        event.preventDefault();
+        document.getElementById("date-error").style.display = "block";
+        return false;
+      }
+      if (!selectedCategory) {
+        event.preventDefault();
+        alert("Please select an appointment category.");
+        return false;
+      }
+      return true;
+    });
+  </script>
+</body>
+</html>

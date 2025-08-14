@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .page-header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-header a {
+            font-family: 'Italiana', serif;
+            font-size: 2.5rem;
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s;
+        }
+
+        .page-header a:hover {
+            color: #ff4081;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #333;
+        }
+
+        #connectionStatus {
+            padding: 12px;
+            font-size: 0.95rem;
+            text-align: center;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .disconnected {
+            background: #f8d7da !important;
+            color: #721c24 !important;
+        }
+
+        #chatbox {
+            padding: 15px;
+            height: 400px;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .customer-message {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .admin-message {
+            background: #e9ecef;
+            color: #333;
+            margin-right: auto;
+        }
+
+        .input-container {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: #fff;
+        }
+
+        #message {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #send {
+            padding: 12px 24px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        #send:hover {
+            background: #333;
+        }
+
+        @media (max-width: 600px) {
+            .page-header a {
+                font-size: 2rem;
+            }
+
+            .chat-header h2 {
+                font-size: 1.3rem;
+            }
+
+            #message,
+            #send {
+                font-size: 0.95rem;
+            }
+
+            #send {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <a href="home1.html">NailsxLissa</a>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Customer Support Chat</h2>
+        </div>
+        <div id="connectionStatus" class="connection-status">Connecting...</div>
+        <div id="chatbox"></div>
+        <div class="input-container">
+            <input type="text" id="message" placeholder="Type your message..." />
+            <button id="send">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate a unique user ID for this session
+        const userId = "user_" + Math.random().toString(36).substr(2, 9);
+        const ws = new WebSocket("ws://" + window.location.hostname + ":8084/nailsxlissa/chat?userId=" + userId);
+        const chatbox = document.getElementById("chatbox");
+        const connectionStatus = document.getElementById("connectionStatus");
+
+        ws.onopen = () => {
+            connectionStatus.textContent = "Connected";
+            connectionStatus.classList.remove("disconnected");
+            console.log("Customer connected with ID:", userId);
+        };
+
+        ws.onclose = () => {
+            connectionStatus.textContent = "Disconnected";
+            connectionStatus.classList.add("disconnected");
+        };
+
+        ws.onerror = (error) => {
+            connectionStatus.textContent = "Connection Error";
+            connectionStatus.classList.add("disconnected");
+            console.error("WebSocket error:", error);
+        };
+
+        ws.onmessage = (event) => {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "message";
+
+            if (event.data.includes("] Admin: ")) {
+                messageDiv.classList.add("admin-message");
+            } else if (event.data.includes("] Customer: ")) {
+                messageDiv.classList.add("customer-message");
+            }
+
+            messageDiv.textContent = event.data;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        };
+
+        function sendMessage() {
+            const input = document.getElementById("message");
+            if (input.value.trim() && ws.readyState === WebSocket.OPEN) {
+                ws.send("Customer: " + input.value.trim());
+                input.value = "";
+            }
+        }
+
+        document.getElementById("send").onclick = sendMessage;
+        document.getElementById("message").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    </script>
+</body>
+</html>

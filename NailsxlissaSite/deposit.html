@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NailsxLissa - Deposit Info</title>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 {
+            font-family: 'Italiana', serif;
+            font-size: 32px;
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: -10px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .info-box, .upload-box, .deposit-calculator {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            text-align: left;
+        }
+        .bank-logo {
+            float: right;
+            width: 50px;
+        }
+        .upload-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .upload-icon {
+            width: 30px;
+            transition: opacity 0.3s ease;
+        }
+        .upload-box:hover .upload-icon {
+            opacity: 0.7;
+        }
+        .note {
+            text-align: left;
+            font-size: 12px;
+            color: gray;
+            margin-top: 10px;
+        }
+        .confirm-btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .confirm-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .file-name {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="home1.html" style="text-decoration: none; color: black;">
+        <h1>NailsxLissa</h1>
+    </a>
+
+    <h2>Deposit<br>Info</h2>
+
+    <!-- Deposit Calculator -->
+    <div class="deposit-calculator">
+        <div>
+            <p>Total Price:</p>
+            <p>$<span id="price">0.00</span></p>
+        </div>
+        <div>
+            <p>20% Deposit:</p>
+            <p>$<span id="deposit">0.00</span></p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3>Deposit Account Information</h3>
+        <img src="images/republicbank.png" class="bank-logo" />
+        <p>Account #: 290025775101</p>
+        <p>Type: Chequing Account</p>
+        <p>Holder: Jahlissa Fraser</p>
+    </div>
+
+    <form id="deposit-form" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="appointmentId" value="123" />
+        <input type="hidden" name="depositAmount" value="0.00" />
+
+        <div class="upload-box">
+            <span>Proof of Payment:</span>
+            <label for="proof-upload">
+                <img id="upload-icon" src="images/document.png" alt="Upload" class="upload-icon" />
+            </label>
+            <input type="file" id="proof-upload" name="proof_upload" accept="image/*" style="display:none;" onchange="handleFileSelect()" />
+            <span id="file-name" class="file-name"></span>
+        </div>
+
+        <div class="note">
+            <p><strong>NB:</strong> Please include Name and Amount in deposit description. Appointment may be canceled if no deposit is received.</p>
+        </div>
+
+        <button id="confirm-btn" type="submit" class="confirm-btn" disabled>Confirm Appointment</button>
+
+        <p id="error-message" style="color:red;"></p>
+    </form>
+
+    <footer>
+        &copy;2024 Jahlissa Fraser
+    </footer>
+</div>
+
+<script>
+    function handleFileSelect() {
+        const input = document.getElementById('proof-upload');
+        const file = input.files[0];
+        const fileNameDisplay = document.getElementById('file-name');
+        const confirmBtn = document.getElementById('confirm-btn');
+
+        if (file) {
+            fileNameDisplay.textContent = file.name;
+            confirmBtn.disabled = false;
+        } else {
+            fileNameDisplay.textContent = "";
+            confirmBtn.disabled = true;
+        }
+    }
+
+    // Example: Set deposit info manually (or fetch via JS if using API)
+    const price = 250.00;
+    const deposit = (price * 0.2).toFixed(2);
+    document.getElementById('price').textContent = price.toFixed(2);
+    document.getElementById('deposit').textContent = deposit;
+    document.querySelector('input[name="depositAmount"]').value = deposit;
+</script>
+
+</body>
+</html>

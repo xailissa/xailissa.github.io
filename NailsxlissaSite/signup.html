@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - NailsxLissa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Italiana', serif;
+            font-size: 32px;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Italiana', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            background: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background: #333;
+        }
+        .link {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .link a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+        .footer {
+            font-size: 12px;
+            margin-top: 20px;
+            color: #666;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+        .show-password img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        /* Password strength meter styles */
+        .password-strength-meter {
+            margin-top: 5px;
+            height: 4px;
+            background-color: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .password-strength-meter-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .strength-weak { background-color: #ff4d4d; }
+        .strength-medium { background-color: #ffa64d; }
+        .strength-strong { background-color: #4dff4d; }
+        .password-strength-text {
+            text-align: left;
+            font-size: 12px;
+            margin-top: 5px;
+            color: #666;
+        }
+        .password-requirements {
+            text-align: left;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .password-requirements ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        .password-requirements li { margin-bottom: 3px; }
+        .requirement-met { color: #2e8b57; }
+        .requirement-unmet { color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="home1.html" style="text-decoration: none; color: black;">
+            <h1>NailsxLissa</h1>
+        </a>
+        <h2>Sign up</h2>
+
+        <form action="signupAction.html" method="post">
+            <input type="text" class="input-box" name="name" placeholder="Enter Name" required>
+            <input type="text" class="input-box" name="username" placeholder="Enter Username" required>
+            <input type="email" class="input-box" name="email" placeholder="Enter Email" required>
+
+            <input type="password" class="input-box" name="password" id="password" placeholder="Enter Password" required>
+
+            <div class="password-strength-meter">
+                <div class="password-strength-meter-fill" id="strength-meter"></div>
+            </div>
+            <div class="password-strength-text" id="strength-text">Password strength</div>
+
+            <div class="password-requirements" id="password-requirements">
+                <div>Password requirements:</div>
+                <ul>
+                    <li id="length-requirement" class="requirement-unmet">At least 8 characters long</li>
+                    <li id="uppercase-requirement" class="requirement-unmet">Contains uppercase letter</li>
+                    <li id="lowercase-requirement" class="requirement-unmet">Contains lowercase letter</li>
+                    <li id="number-requirement" class="requirement-unmet">Contains number</li>
+                    <li id="special-requirement" class="requirement-unmet">Contains special character</li>
+                </ul>
+            </div>
+
+            <div class="show-password">
+                <img id="show-password" src="images/eye.png" alt="Show Password" onclick="togglePassword()">
+                <span>Show Password</span>
+            </div>
+
+            <button type="submit" class="btn" id="submit-btn">Sign Up</button>
+        </form>
+
+        <p class="link">Have an account? <a href="login.html">Login</a></p>
+        <p class="footer">&copy;2024 Jahlissa Fraser</p>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            var showPassword = document.getElementById("show-password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPassword.src = "images/eye.png";
+            } else {
+                passwordInput.type = "password";
+                showPassword.src = "images/close-eye.png";
+            }
+        }
+
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.getElementById('strength-meter');
+        const strengthText = document.getElementById('strength-text');
+
+        const lengthReq = document.getElementById('length-requirement');
+        const uppercaseReq = document.getElementById('uppercase-requirement');
+        const lowercaseReq = document.getElementById('lowercase-requirement');
+        const numberReq = document.getElementById('number-requirement');
+        const specialReq = document.getElementById('special-requirement');
+
+        passwordInput.addEventListener('input', function () {
+            const password = passwordInput.value;
+            let strength = 0;
+            let feedbackText = '';
+
+            const hasLength = password.length >= 8;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+            lengthReq.className = hasLength ? 'requirement-met' : 'requirement-unmet';
+            uppercaseReq.className = hasUppercase ? 'requirement-met' : 'requirement-unmet';
+            lowercaseReq.className = hasLowercase ? 'requirement-met' : 'requirement-unmet';
+            numberReq.className = hasNumber ? 'requirement-met' : 'requirement-unmet';
+            specialReq.className = hasSpecial ? 'requirement-met' : 'requirement-unmet';
+
+            if (password.length > 0) {
+                if (hasLength) strength += 20;
+                if (hasUppercase) strength += 20;
+                if (hasLowercase) strength += 20;
+                if (hasNumber) strength += 20;
+                if (hasSpecial) strength += 20;
+
+                if (strength <= 40) {
+                    strengthMeter.className = 'password-strength-meter-fill strength-weak';
+                    feedbackText = 'Weak password';
+                } else if (strength <= 80) {
+                    strengthMeter.className = 'password-strength-meter-fill strength-medium';
+                    feedbackText = 'Medium password';
+                } else {
+                    strengthMeter.className = 'password-strength-meter-fill strength-strong';
+                    feedbackText = 'Strong password';
+                }
+
+                strengthMeter.style.width = strength + '%';
+                strengthText.textContent = feedbackText;
+            } else {
+                strengthMeter.style.width = '0%';
+                strengthText.textContent = 'Password strength';
+            }
+        });
+    </script>
+</body>
+</html>

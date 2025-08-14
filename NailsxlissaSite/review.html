@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NailsxLissa Reviews</title>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* [All your CSS remains unchanged] */
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; max-width: 500px; margin: 0 auto; }
+    .book-now { background-color: gray; color: white; padding: 8px 12px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 20px; transition: background-color 0.3s; }
+    .book-now:hover { background-color: #d9d9d9; }
+    h1, .subtitle { font-family: 'Italiana', serif; text-align: center; }
+    h1 { margin-bottom: 5px; font-size: 2.5rem; }
+    .subtitle { margin-top: 0; margin-bottom: 30px; font-size: 1.2em; }
+    .review-form { margin-bottom: 30px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .form-row { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center; }
+    .form-row label { font-weight: bold; }
+    .name-input { flex-grow: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-left: 10px; }
+    .stars { display: flex; margin: 10px 0; }
+    .star { font-size: 28px; cursor: pointer; margin-right: 5px; color: #ccc; transition: transform 0.1s; }
+    .star:hover { transform: scale(1.1); }
+    .star i { transition: color 0.2s; }
+    .star.selected i { color: #FFD700; }
+    .review-text { width: 100%; min-height: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 5px; resize: none; margin-bottom: 15px; box-sizing: border-box; }
+    .submit-container { display: flex; justify-content: flex-end; }
+    button[type="submit"] { background-color: #000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s; }
+    button[type="submit"]:hover { background-color: #333; }
+    h3 { margin-top: 30px; font-family: 'Italiana', serif; font-size: 1.5rem; }
+    .review-list { margin-top: 20px; }
+    .review-item { background-color: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+    .reviewer-name { font-weight: bold; font-size: 1.1em; }
+    .review-stars .star { font-size: 18px; cursor: default; margin-right: 2px; }
+    .review-stars .star.filled i { color: #FFD700; }
+    .footer { text-align: center; margin-top: 30px; padding-top: 15px; font-size: 0.8em; color: #666; border-top: 1px solid #ddd; }
+    .success-message { color: green; margin-top: 10px; font-weight: bold; display: none; }
+  </style>
+</head>
+<body>
+  <a href="bookNow.html" class="book-now">Book Now</a>
+
+  <div class="container">
+    <a href="home1.html" style="text-decoration: none; color: black;">
+      <h1>NailsxLissa</h1>
+    </a>
+    <h2>Reviews</h2>
+  </div>
+
+  <div class="review-form">
+    <form id="reviewForm" action="submitReview.html" method="post">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="name-input" required>
+      </div>
+
+      <label for="rating">Rate</label>
+      <div class="stars" id="starRating">
+        <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+        <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+        <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+        <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+        <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+        <input type="hidden" name="rating" id="ratingValue" required>
+      </div>
+
+      <textarea class="review-text" name="review" id="reviewText" placeholder="Leave a review..." required></textarea>
+      <div class="submit-container">
+        <button type="submit">Submit</button>
+      </div>
+      <div class="success-message" id="successMessage">Review submitted successfully!</div>
+    </form>
+  </div>
+
+  <h3>Previous Reviews</h3>
+
+  <div class="review-list" id="review-container">
+    <!-- Example hardcoded reviews -->
+           <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Emily Johnson</span>
+                <div class="review-stars">
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+            <div class="review-content">Absolutely love my nails! Lissa is a true artist. I get so many compliments every time I visit. She takes her time and makes sure everything is perfect. I wouldn't go anywhere else!</div>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Sophia Williams</span>
+                <div class="review-stars">
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+            <div class="review-content">Great experience! The nail art was beautiful and exactly what I asked for. Will definitely return for my next set!</div>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Olivia Martinez</span>
+                <div class="review-stars">
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+            <div class="review-content">I'm extremely picky about my nails and Lissa never disappoints! She's professional, creative, and her attention to detail is amazing. My nails always last longer than when I've gone elsewhere.</div>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Michael Brown</span>
+                <div class="review-stars">
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+            <div class="review-content">Booked an appointment for my wife as a gift and she couldn't be happier! Great service and beautiful results. Highly recommend!</div>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Zoe Taylor</span>
+                <div class="review-stars">
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                    <span class="star filled"><i class="fas fa-star"></i></span>
+                </div>
+            </div>
+    <!-- Add more hardcoded reviews or load via JS from backend if needed -->
+  </div>
+
+  <div class="footer">
+    &copy;2024 Jahlissa Fraser
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let selectedRating = 0;
+      const stars = document.querySelectorAll('#starRating .star');
+      const form = document.getElementById('reviewForm');
+      const successMessage = document.getElementById('successMessage');
+
+      stars.forEach(star => {
+        star.addEventListener('click', function () {
+          selectedRating = parseInt(this.getAttribute('data-value'));
+          document.getElementById('ratingValue').value = selectedRating;
+
+          stars.forEach(s => s.classList.remove('selected'));
+          for (let i = 0; i < selectedRating; i++) {
+            stars[i].classList.add('selected');
+          }
+        });
+
+        star.addEventListener('mouseover', function () {
+          const value = parseInt(this.getAttribute('data-value'));
+          stars.forEach((s, i) => {
+            i < value ? s.classList.add('selected') : s.classList.remove('selected');
+          });
+        });
+
+        star.addEventListener('mouseout', function () {
+          stars.forEach((s, i) => {
+            i < selectedRating ? s.classList.add('selected') : s.classList.remove('selected');
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const rating = document.getElementById('ratingValue').value;
+        const reviewText = document.getElementById('reviewText').value;
+
+        if (!name || !rating || !reviewText) {
+          alert('Please fill in all fields and select a rating.');
+          return;
+        }
+
+        const reviewItem = document.createElement('div');
+        reviewItem.className = 'review-item';
+
+        const reviewHeader = document.createElement('div');
+        reviewHeader.className = 'review-header';
+
+        const reviewerName = document.createElement('span');
+        reviewerName.className = 'reviewer-name';
+        reviewerName.textContent = name;
+
+        const reviewStars = document.createElement('div');
+        reviewStars.className = 'review-stars';
+        for (let i = 0; i < 5; i++) {
+          const star = document.createElement('span');
+          star.className = i < rating ? 'star filled' : 'star';
+          const icon = document.createElement('i');
+          icon.className = 'fas fa-star';
+          star.appendChild(icon);
+          reviewStars.appendChild(star);
+        }
+
+        reviewHeader.appendChild(reviewerName);
+        reviewHeader.appendChild(reviewStars);
+
+        const reviewContent = document.createElement('div');
+        reviewContent.className = 'review-content';
+        reviewContent.textContent = reviewText;
+
+        reviewItem.appendChild(reviewHeader);
+        reviewItem.appendChild(reviewContent);
+
+        document.getElementById('review-container').insertBefore(reviewItem, document.getElementById('review-container').firstChild);
+
+        successMessage.style.display = 'block';
+        form.reset();
+        selectedRating = 0;
+        stars.forEach(s => s.classList.remove('selected'));
+
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>

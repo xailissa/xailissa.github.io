@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NailsxLissa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Italiana', serif;
+            font-size: 32px;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Italiana', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            background: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background: #333;
+        }
+        .link {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .link a {
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+        .footer {
+            font-size: 12px;
+            margin-top: 20px;
+            color: #666;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+        .show-password img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        .error-message {
+            background-color: #ffe0e0;
+            color: #b30000;
+            padding: 10px;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            var showPassword = document.getElementById("show-password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPassword.src = "images/eye.png";
+            } else {
+                passwordInput.type = "password";
+                showPassword.src = "images/close-eye.png";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="home1.html" style="text-decoration: none; color: black;">
+            <h1>NailsxLissa</h1>
+        </a>
+        <h2>Login</h2>
+
+        <!-- Static error message example (optional) -->
+        <!-- <div class="error-message">Invalid username or password. Please try again.</div> -->
+
+        <form action="loginAction.html" method="post">
+            <input type="text" name="username" class="input-box" placeholder="Enter Username" required>
+            <input type="password" name="password" class="input-box" id="password" placeholder="Enter Password" required>
+            
+            <div class="show-password">
+                <img id="show-password" src="images/eye.png" alt="Show Password" onclick="togglePassword()">
+                <span>Show Password</span>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p class="link">Don't have an Account? <a href="signup.html">Signup</a></p>
+        <p class="footer">&copy;2024 Jahlissa Fraser</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+  <title>Catalogue - NailsxLissa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background: #fff;
+    }
+    .top-bar .btn {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 5px 10px;
+      background: gray;
+      border-radius: 5px;
+    }
+    .top-bar div a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+    .header {
+      text-align: center;
+      font-family: 'Italiana', serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 10px;
+      text-align: center;
+    }
+    .container h1, .container h2 {
+      font-family: 'Italiana', serif;
+    }
+    .image-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      white-space: nowrap;
+    }
+    .image-container img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      scroll-snap-align: start;
+    }
+    .section-title {
+      text-align: left;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="bookNow.jsp" class="btn">Book Now</a>
+    <div>
+      <a href="signup.html">Sign Up</a> | <a href="login.html">Login</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <a href="home1.html" style="text-decoration: none; color: black;">
+      <h1>NailsxLissa</h1>
+    </a>
+    <h2>Catalogue</h2>
+  </div>
+
+  <div class="container">
+    <!-- Recent Designs -->
+    <div class="section-title">Recent Designs</div>
+    <div class="image-container">
+      <img src="nailpics/image0.jpeg" alt="Recent Design 1">
+      <img src="nailpics/image11.jpeg" alt="Recent Design 2">
+      <img src="nailpics/image4.jpeg" alt="Recent Design 3">
+    </div>
+
+    <!-- Featured Designs -->
+    <div class="section-title">Featured Designs</div>
+    <div class="image-container">
+      <img src="nailpics/image7.jpeg" alt="Featured Design 1">
+      <img src="nailpics/image12.jpeg" alt="Featured Design 2">
+      <img src="nailpics/image6.jpeg" alt="Featured Design 3">
+    </div>
+
+    <!-- Other Designs -->
+    <div class="section-title">Other Designs</div>
+    <div class="image-container">
+      <img src="nailpics/image14.jpeg" alt="Other Design 1">
+      <img src="nailpics/image3.jpeg" alt="Other Design 2">
+      <img src="nailpics/image8.jpeg" alt="Other Design 3">
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy;2024 Jahlissa Fraser
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll(".container, .section-title, .image-container");
+      sections.forEach(section => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(30px)";
+      });
+
+      function fadeInSections() {
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 50) {
+            section.style.transition = "all 0.6s ease-in-out";
+            section.style.opacity = "1";
+            section.style.transform = "translateY(0)";
+          }
+        });
+      }
+      fadeInSections();
+      window.addEventListener("scroll", fadeInSections);
+
+      document.querySelectorAll(".image-container").forEach(container => {
+        container.addEventListener("wheel", (event) => {
+          event.preventDefault();
+          container.scrollBy({
+            left: event.deltaY > 0 ? 100 : -100,
+            behavior: "smooth"
+          });
+        });
+      });
+
+      document.querySelectorAll(".image-container img").forEach(img => {
+        img.style.transition = "transform 0.3s ease-in-out";
+        img.addEventListener("mouseover", function () {
+          this.style.transform = "scale(1.1)";
+        });
+        img.addEventListener("mouseout", function () {
+          this.style.transform = "scale(1)";
+        });
+      });
+
+      const backToTop = document.createElement("button");
+      backToTop.innerHTML = "⬆️";
+      backToTop.style.position = "fixed";
+      backToTop.style.bottom = "20px";
+      backToTop.style.right = "20px";
+      backToTop.style.padding = "10px";
+      backToTop.style.background = "#ff66b2";
+      backToTop.style.border = "none";
+      backToTop.style.borderRadius = "50%";
+      backToTop.style.color = "#fff";
+      backToTop.style.cursor = "pointer";
+      backToTop.style.display = "none";
+      backToTop.style.fontSize = "18px";
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      document.body.appendChild(backToTop);
+
+      window.addEventListener("scroll", function () {
+        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
